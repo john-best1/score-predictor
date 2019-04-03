@@ -1,4 +1,10 @@
 <div class="example-container mat-elevation-z8">
+    <select (change)="onChangeLeague($event.target.value)">
+      <option *ngFor="let league of leagues" [value]="league.id">{{league.name}}</option>
+    </select>
+    <select (change)="onChangeForm($event.target.value)">
+        <option *ngFor="let formType of formTypes" [value]="formType.id">{{formType.name}}</option>
+    </select>
   <mat-table [dataSource]="listData" matSort>
       <ng-container matColumnDef="position">
         <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
@@ -8,36 +14,36 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="matches">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
+      <ng-container matColumnDef="matchesPlayed">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>MP</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.matchesPlayed}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="won">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>W</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.won}} </mat-cell>
       </ng-container>      
       <ng-container matColumnDef="drawn">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>D</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.drawn}} </mat-cell>
       </ng-container>      
       <ng-container matColumnDef="lost">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>L</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.lost}} </mat-cell>
       </ng-container>      
-      <ng-container matColumnDef="gf">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.goalsFor}} </mat-cell>
+      <ng-container matColumnDef="goalsFor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>GD</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.goalDifference}} </mat-cell>
       </ng-container>     
-       <ng-container matColumnDef="ga">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
+       <ng-container matColumnDef="goalsAgainst">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>GF</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.goalsFor}} </mat-cell>
+      </ng-container>      
+      <ng-container matColumnDef="goalDifference">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>GA</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.goalsAgainst}} </mat-cell>
       </ng-container>      
-      <ng-container matColumnDef="gd">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.goalDifference}} </mat-cell>
-      </ng-container>      
       <ng-container matColumnDef="points">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> MP</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Pts</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.points}} </mat-cell>
       </ng-container>
 

@@ -1,10 +1,29 @@
 .example-container {
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
+    position: relative;
+    overflow:auto;
+    max-width: 1000px;
+    max-height: 100000px;
+    margin-left: 100px;
+    margin-top: 20px
   }
-  
-  .mat-table {
-    overflow: auto;
-    max-height: 700px;
+
+  .mat-column-matchesPlayed,
+  .mat-column-drawn,
+  .mat-column-won,
+  .mat-column-lost,
+  .mat-column-goalsAgainst,
+  .mat-column-goalsFor,
+  .mat-column-goalDifference,
+  .mat-column-points,
+  .mat-column-position{
+    max-width: 64px;
+    font-size: 12px;
+  }
+
+  mat-header-row,
+  mat-row{
+  min-height: 28px;
+}
+  table{
+    width: 50%;
   }
