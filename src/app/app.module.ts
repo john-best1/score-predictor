@@ -1,3 +1,4 @@
+import { FixturesService } from './fixtures.service';
 import { LeaguesService } from './leagues.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   providers: [
-    LeaguesService
+    LeaguesService,
+    FixturesService
   ],
   bootstrap: [AppComponent]
 })
