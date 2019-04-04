@@ -12,7 +12,7 @@ export class HomeComponent {
 
   fixture: Fixture;
   fixtures: Fixture[] = [];
-  fixtureLists = [[],[]];
+  fixtureLists = [[],[],[],[],[],[],[],[],[]];
   constructor(private fixturesService : FixturesService) { 
     this.getFixtures();
   }
@@ -32,19 +32,50 @@ export class HomeComponent {
         this.fixture.leagueId = fixtures["matches"][i]["competition"]["id"];
         this.fixture.leagueName = fixtures["matches"][i]["competition"]["name"];   
         this.addToCorrectFixtureList();
-        //this.initializeTable(this.leagueEntries);
       }}
       )
   }
 
   addToCorrectFixtureList(){
     switch(this.fixture.leagueId){
+      //Brazillian Premier League
       case 2013:{
         this.fixtureLists[0].push(this.fixture);
         break;
       }
+      //Eredivisie
       case 2003:{
         this.fixtureLists[1].push(this.fixture);
+        break;
+      }
+      //Bundesliga
+      case 2002:{
+        this.fixtureLists[2].push(this.fixture);
+        break;
+      }
+      //La Liga
+      case 2014:{
+        this.fixtureLists[3].push(this.fixture);
+        break;
+      }
+      //Ligue 1
+      case 2015:{
+        this.fixtureLists[4].push(this.fixture);
+        break;
+      }
+      //Championship
+      case 2016:{
+        this.fixtureLists[5].push(this.fixture);
+        break;
+      }
+      //Liga NOS
+      case 2017:{
+        this.fixtureLists[6].push(this.fixture);
+        break;
+      }
+      //Premier League
+      case 2021:{
+        this.fixtureLists[8].push(this.fixture);
         break;
       }
       default:{
@@ -54,6 +85,9 @@ export class HomeComponent {
     }
   }
 
+  buildFixtureString(team1, team2){
+    return team1 + "   V   " + team2;
+  }
 
 
 }

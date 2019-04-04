@@ -1,0 +1,8 @@
+.fixtures-container {
+    position: relative;
+    overflow:auto;
+    max-width: 1000px;
+    max-height: 1000px;
+    margin-left: 100px;
+    margin-top: 20px
+  }

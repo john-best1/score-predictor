@@ -1,4 +1,3 @@
-import { FixturesService } from './fixtures.service';
 import { LeaguesService } from './leagues.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -8,7 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LeaguesComponent } from './leagues/leagues.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatInputModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatInputModule, MatExpansionModule } from '@angular/material';
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -31,11 +30,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSortModule,
     MatProgressSpinnerModule,
     MatInputModule,
+    MatExpansionModule,
     BrowserAnimationsModule
   ],
   providers: [
-    LeaguesService,
-    FixturesService
+    LeaguesService
   ],
   bootstrap: [AppComponent]
 })

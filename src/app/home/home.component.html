@@ -1,0 +1,23 @@
+<div class="fixtures-container">
+  <ng-container *ngFor="let fixtureList of fixtureLists; let i = index">
+      <mat-expansion-panel *ngIf="fixtureList.length">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{fixtureList[0].leagueName}}
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <table class="table">
+            <tr *ngFor="let fixture of fixtureLists[i]; let x = index">
+                <td>{{ fixture.dateTime | date:'dd MMM yyyy'}}</td>
+                <td>{{ fixture.dateTime | date:'shortTime'}}</td>
+                <td>{{ buildFixtureString(fixture.homeTeamName, fixture.awayTeamName)}}</td>
+                <td>
+                  <button class="btn btn-primary" href="#">Get Prediction</button>
+                </td>
+            </tr>
+        </table>
+      </mat-expansion-panel>
+    </ng-container>
+</div>
