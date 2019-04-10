@@ -1,0 +1,18 @@
+<mat-expansion-panel *ngIf="fixture">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{fixture.leagueName}}
+    </mat-panel-title>
+    <mat-panel-description>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <table class="table">
+      <tr>
+          <td>{{ fixture.dateTime | date:'dd MMM yyyy'}}</td>
+          <td>{{ fixture.dateTime | date:'shortTime'}}</td>
+          <td>{{ fixture.venue}}</td>
+          <td>
+          </td>
+      </tr>
+  </table>
+</mat-expansion-panel>

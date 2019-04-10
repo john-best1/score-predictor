@@ -14,7 +14,9 @@
                 <td>{{ fixture.dateTime | date:'shortTime'}}</td>
                 <td>{{ buildFixtureString(fixture.homeTeamName, fixture.awayTeamName)}}</td>
                 <td>
-                  <button class="btn btn-primary" href="#">Get Prediction</button>
+                  <button class="btn btn-primary" [routerLink]="['prediction', fixture.leagueId, fixture.id, fixture.homeTeamId, fixture.awayTeamId]">
+                  Get Prediction
+                </button>
                 </td>
             </tr>
         </table>

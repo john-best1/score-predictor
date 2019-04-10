@@ -1,3 +1,5 @@
+import { MatchesService } from './matches.service';
+import { FixturesService } from './fixtures.service';
 import { LeaguesService } from './leagues.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,19 +12,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatInputModule, MatExpansionModule } from '@angular/material';
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PredictionComponent } from './prediction/prediction.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    LeaguesComponent
+    LeaguesComponent,
+    PredictionComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'prediction/:leagueId/:fixtureId/:homeTeamId/:awayTeamId', component: PredictionComponent },
       { path: 'leagues', component: LeaguesComponent }
     ]),
     MatTableModule,
@@ -34,7 +39,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   providers: [
-    LeaguesService
+    LeaguesService,
+    FixturesService,
+    MatchesService
   ],
   bootstrap: [AppComponent]
 })
