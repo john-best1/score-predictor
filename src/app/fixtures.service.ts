@@ -6,12 +6,14 @@ import { Injectable } from '@angular/core';
 })
 export class FixturesService {
 
-  availableLeagueCodes: string = "2002,2003,2013,2014,2015,2016,2017,2019,2021"
+  // include a date in the get query like below if there are no fixtures that day
+  date: string = "?dateFrom=2019-04-12&dateTo=2019-04-13"
   constructor(private http: HttpClient) { }
+
 
   get(){
     const headers = new HttpHeaders().set('X-Auth-Token', '7830c352850f4acda78aa61d1666d45b');
-    return this.http.get("https://api.football-data.org/v2/matches?competitions=" + this.availableLeagueCodes, {headers});
+    return this.http.get("https://api.football-data.org/v2/matches" + this.date, {headers});
   }
 
   getFixture(fixtureId){

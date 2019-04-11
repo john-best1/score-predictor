@@ -1,18 +1,34 @@
-<mat-expansion-panel *ngIf="fixture">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      {{fixture.leagueName}}
-    </mat-panel-title>
-    <mat-panel-description>
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <table class="table">
-      <tr>
-          <td>{{ fixture.dateTime | date:'dd MMM yyyy'}}</td>
-          <td>{{ fixture.dateTime | date:'shortTime'}}</td>
-          <td>{{ fixture.venue}}</td>
-          <td>
-          </td>
-      </tr>
-  </table>
-</mat-expansion-panel>
+<div style="text-align: center" *ngIf="fixture">
+  <div class="toppane">
+      <div>
+        <h3>{{ fixture.leagueName}}</h3>     
+        <p>{{fixture.venue}}</p>
+        <p>{{ fixture.dateTime | date:'dd MMM yyyy'}}&nbsp;&nbsp;&nbsp;&nbsp;{{ fixture.dateTime | date:'shortTime'}}</p>
+      </div>
+    </div>
+  <div class="leftpane" style="text-align: center" *ngIf="fixture">
+    <div *ngIf="homeStats">
+      <h2>{{ fixture.homeTeamName}}</h2>
+      <p >League Position : {{ homeStats.leaguePos}}</p>
+      <p>W/D/L % : &nbsp;&nbsp;&nbsp;{{ wdl(homeStats.matchesPlayed, homeStats.won, homeStats.drawn, homeStats.lost ) }}</p>
+      <p>Goals Per Game : &nbsp;&nbsp;&nbsp;{{ goalsPerGame(homeStats.scored, homeStats.matchesPlayed) }}</p>
+      <p>Goals Conceded Per Game : &nbsp;&nbsp;&nbsp;{{ goalsPerGame(homeStats.conceded, homeStats.matchesPlayed) }}</p>
+    </div>
+  </div>
+
+  <div class="rightpane" style="text-align: center" *ngIf="fixture">
+    <div *ngIf="homeStats">
+      <h2>{{ fixture.awayTeamName}}</h2>
+      <p>League Position : {{ awayStats.leaguePos }}</p>
+      <p>W/D/L % : &nbsp;&nbsp;&nbsp;{{ wdl(awayStats.matchesPlayed, awayStats.won, awayStats.drawn, awayStats.lost ) }}</p>
+      <p>Goals Per Game : &nbsp;&nbsp;&nbsp;{{ goalsPerGame(awayStats.scored, awayStats.matchesPlayed) }}</p>
+      <p>Goals Conceded Per Game : &nbsp;&nbsp;&nbsp;{{ goalsPerGame(awayStats.conceded, awayStats.matchesPlayed) }}</p>
+    </div>
+  </div>
+  <div class="predictionpane" style="text-align: center" *ngIf="fixture && homeStats && awayStats">
+    <div *ngIf="homeResults && awayResults">
+      <h2>Predicted Result : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ predictedResult(fixture.homeTeamName, fixture.awayTeamName, homeResults.totalPoints, awayResults.totalPoints) }}</h2>
+      <h2>Predicted Score : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ predictedScore() }}</h2>
+    </div>
+  </div>
+</div>

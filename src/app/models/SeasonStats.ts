@@ -11,4 +11,5 @@ export class SeasonStats{
     homeOrAwayScored: number;
     conceded: number;
     homeOrAwayConceded: number;
+    leaguePos: number;
 }

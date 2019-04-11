@@ -1,3 +1,8 @@
-.bg-green{
+
+
+.toppane {
+    width: 100%;
+    height: 100px;
+    border-collapse: collapse;
     background-color: green;
-}
+  }

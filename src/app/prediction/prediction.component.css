@@ -1,0 +1,30 @@
+.ad-left {
+    float: left;
+  }
+  
+
+  .toppane {
+    width: 80%;
+    height: 100%;
+    border-collapse: collapse;
+}
+  .leftpane {
+    width: 40%;
+    height: 100%;
+    float: left;
+    border-collapse: collapse;
+}
+.rightpane {
+    width: 40%;
+    height: 100%;
+    position: relative;
+    float: left;
+    border-collapse: collapse;
+  }
+
+  .predictionpane{
+    padding-top: 300px;
+    width: 80%;
+    height: 100%;
+    border-collapse: collapse;
+  }
