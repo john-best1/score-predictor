@@ -1,3 +1,4 @@
+<loading-spinner *ngIf="showSpinner"></loading-spinner>
 <div class="fixtures-container">
   <ng-container *ngFor="let fixtureList of fixtureLists; let i = index">
       <mat-expansion-panel *ngIf="fixtureList.length">
@@ -8,15 +9,17 @@
           <mat-panel-description>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <table class="table">
+        <table class="table table-condensed table-bordered">
             <tr *ngFor="let fixture of fixtureLists[i]; let x = index">
                 <td>{{ fixture.dateTime | date:'dd MMM yyyy'}}</td>
                 <td>{{ fixture.dateTime | date:'shortTime'}}</td>
                 <td>{{ buildFixtureString(fixture.homeTeamName, fixture.awayTeamName)}}</td>
                 <td>
+                <div class="button-wrapper">
                   <button class="btn btn-primary" [routerLink]="['prediction', fixture.leagueId, fixture.id, fixture.homeTeamId, fixture.awayTeamId]">
-                  Get Prediction
-                </button>
+                    Get Prediction
+                  </button>
+                </div>
                 </td>
             </tr>
         </table>

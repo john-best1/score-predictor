@@ -6,3 +6,17 @@
     margin-left: 100px;
     margin-top: 20px
   }
+
+  .mat-expansion-panel{
+    margin-top: 5px;
+  }
+
+  .btn{
+    height: 28px;
+    width: 110px;
+    font-size: 12px;
+  }
+
+  .button-wrapper{
+    text-align:center;
+  }

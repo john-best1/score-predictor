@@ -13,17 +13,18 @@ import { stringify } from '@angular/core/src/util';
 export class LeaguesComponent {
 
   league: Observable<any>;
-  leagueCode: string = "PL";
+  leagueCode: number = 2021;
   tableType: number = 0;
   leagueEntries: LeagueEntry[] = [];
   listData: MatTableDataSource<LeagueEntry>;
   displayedColumns: string[] = ['position', 'name', 'matchesPlayed', 'won', 'drawn', 'lost', 'goalsFor', 'goalsAgainst', 'goalDifference', 'points'];
   entry: LeagueEntry;
-  leagues = [{id: 1, name: 'Premier League', code: 'PL'}, {id: 2, name: 'Ligue 1', code: 'FL1'},
-            {id: 3, name: 'Championship', code: 'ELC'}, {id: 4, name: 'Brazillian Division One', code: 'BSA'},
-            {id: 5, name: 'Bundesliga', code: 'BL1'},{id: 6, name: 'Italy Serie A', code: 'SA'},
-            {id: 7, name: 'Eredivisie', code: 'DED'},{id: 8, name: 'Portuguese Primera Division', code: 'PPL'},
-            {id: 9, name: 'Spain La Liga', code: 'PD'}];
+  //2021 prem, 2016 champ, 2030 league 1, 2084 spl, 2014 la liga, 2002 bundes, 2019 serie a, 2015 ligue 1, 2003 eredivisie, 2017 liga nos
+  leagues = [{id: 1, name: 'Premier League', code: 2021}, {id: 2, name: 'Championship', code: 2016}, 
+            {id: 3, name: 'League 1', code: 2030},{id: 4, name: 'Scotland Premier League', code: 2084},
+            {id: 5, name: 'Spain La Liga', code: 2014},{id: 6, name: 'Bundesliga', code: 2002},
+            {id: 7, name: 'Italy Serie A', code: 2019},{id: 8, name: 'Ligue 1', code: 2015}, 
+            {id: 9, name: 'Eredivisie', code: 2003},{id: 10, name: 'Portuguese Primera Division', code: 2017}];
   formTypes = [{id: 0, name: 'Total'},{id: 1, name: 'Home'},{id: 2, name: 'Away'}];
 
   @ViewChild(MatSort) sort: MatSort;

@@ -13,6 +13,8 @@ import { MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerMo
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PredictionComponent } from './prediction/prediction.component';
+import {MatProgressBarModule} from '@angular/material';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { PredictionComponent } from './prediction/prediction.component';
     NavbarComponent,
     HomeComponent,
     LeaguesComponent,
-    PredictionComponent
+    PredictionComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { PredictionComponent } from './prediction/prediction.component';
     MatProgressSpinnerModule,
     MatInputModule,
     MatExpansionModule,
+    MatProgressBarModule,
     BrowserAnimationsModule
   ],
   providers: [

@@ -34,7 +34,7 @@ export class PredictionComponent{
     private matchesService: MatchesService) { 
       this.fixture$ = this.fixturesService.getFixture(this.route.snapshot.paramMap.get('fixtureId'));
       this.populateFixture();
-      this.league$ = this.leagueService.get(this.route.snapshot.paramMap.get('leagueId'));
+      this.league$ = this.leagueService.get(+this.route.snapshot.paramMap.get('leagueId'));
       this.populateStatSheets();
       this.homeResults$ = this.matchesService.get(this.route.snapshot.paramMap.get('homeTeamId'));
       this.populateHomeResults();
@@ -47,8 +47,8 @@ export class PredictionComponent{
       this.homeResults = new LastSixResults();   
       this.homeResults.teamId = this.route.snapshot.paramMap.get('homeTeamId')
       this.homeResults.matches = [];
-      for(var i = this.currentMatchday -1; i != (this.currentMatchday-1) - this.homeSixGameCount; i--){
-        if (res["matches"][i]["status"] == "FINISHED"){      
+      for(var i = (+res["matches"].length)-1; i != ((+res["matches"].length)-1) - this.homeSixGameCount; i--){
+        if (res["matches"][i]["competition"]["id"] == this.route.snapshot.paramMap.get('leagueId')){    
           this.resultToAdd = new MatchResult();
           this.resultToAdd.homeTeamId = res["matches"][i]["homeTeam"]["id"];       
           this.resultToAdd.awayTeamId = res["matches"][i]["awayTeam"]["id"];
@@ -87,7 +87,8 @@ export class PredictionComponent{
           }
         }
       }
-    })
+    }
+    )
   }
 
   populateAwayResults(){
@@ -95,8 +96,8 @@ export class PredictionComponent{
       this.awayResults = new LastSixResults();   
       this.awayResults.teamId = this.route.snapshot.paramMap.get('awayTeamId')
       this.awayResults.matches = [];
-      for(var i = this.currentMatchday; i != (this.currentMatchday-1) - this.awaySixGameCount; i--){      
-        if (res["matches"][i]["status"] == "FINISHED"){         
+      for(var i = (+res["matches"].length)-1; i != ((+res["matches"].length)-1) - this.awaySixGameCount; i--){
+        if (res["matches"][i]["competition"]["id"] == this.route.snapshot.paramMap.get('leagueId')){   
           this.resultToAdd = new MatchResult();
           this.resultToAdd.homeTeamId = res["matches"][i]["homeTeam"]["id"];       
           this.resultToAdd.awayTeamId = res["matches"][i]["awayTeam"]["id"];
@@ -211,31 +212,27 @@ export class PredictionComponent{
   }
 
   predictedResult(homeTeam : string, awayTeam: string, homePoints : number, awayPoints : number){
-    if (homePoints > awayPoints){
-      if (homePoints - awayPoints > 8){
-        this.resultPrediction = 1;
+    if (homePoints - awayPoints > -2){     
+      this.resultPrediction = 1;
+      if (homePoints - awayPoints > 5.5){
         return homeTeam + " Win - STRONG";
       }
-      if (homePoints - awayPoints > 4){
-        this.resultPrediction = 1;
+      else if (homePoints - awayPoints > 2.5){
         return homeTeam + " Win - MEDIUM" 
       }
-      if (homePoints - awayPoints > 2){
-        this.resultPrediction = 1;
+      else {
         return homeTeam + " Win - LOW" 
       }
     }
-    else if (homePoints < awayPoints){
-      if (awayPoints - homePoints > 8){
+    else if (awayPoints - homePoints > 2){
         this.resultPrediction = 2;
+      if(awayPoints - homePoints > 8){
         return awayTeam + " Win - STRONG";
       }
-      if (awayPoints - homePoints > 4){
-        this.resultPrediction = 2;
+      else if (awayPoints - homePoints > 5){
         return awayTeam + " Win - MEDIUM" 
       }
-      if (awayPoints - homePoints > 2){
-        this.resultPrediction = 2;
+      else if (awayPoints - homePoints > 2){
         return awayTeam + " Win - LOW" 
       }
     }
@@ -243,9 +240,9 @@ export class PredictionComponent{
       this.resultPrediction = 3;
       return "Draw"
     }
-  }
+}
 
   predictedScore(){
-    console.log("Predict Score Here")
+    null;
   }
 }
