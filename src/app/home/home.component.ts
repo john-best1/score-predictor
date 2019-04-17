@@ -15,7 +15,10 @@ export class HomeComponent {
   fixtures: Fixture[] = [];
   dateString : string;
   fixtureListsEmpty: boolean = true;
-  fixtureLists = [[],[],[],[],[],[],[],[],[],[]];
+  fixtureLists = [{country: "England", fixtures : []},{country: "England", fixtures : []},{country: "England", fixtures : []},
+  {country: "Scotland", fixtures : []},{country: "Spain", fixtures : []},{country: "Italy", fixtures : []},{country: "Germany", fixtures : []},
+  {country: "France", fixtures : []},{country: "Netherlands", fixtures : []},{country: "Portugal", fixtures : []}];
+
   todaysDate: Date = new Date();
   constructor(private fixturesService : FixturesService) { 
     this.getFixtures();
@@ -23,8 +26,11 @@ export class HomeComponent {
 
 
   repopulateFixtures(event: MatDatepickerInputEvent<Date>){
+    this.fixtureLists = [{country: "England", fixtures : []},{country: "England", fixtures : []},{country: "England", fixtures : []},
+    {country: "Scotland", fixtures : []},{country: "Spain", fixtures : []},{country: "Italy", fixtures : []},{country: "Germany", fixtures : []},
+    {country: "France", fixtures : []},{country: "Netherlands", fixtures : []},{country: "Portugal", fixtures : []}];
+
     this.todaysDate = event.value;
-    this.fixtureLists = [[],[],[],[],[],[],[],[],[],[]];
     this.fixtureListsEmpty = true;
     this.showSpinner = true;
     this.dateString = "&dateFrom=" + event.value.getFullYear() + "-" + ("0" + (event.value.getMonth() + 1)).slice(-2) + "-" + ("0" + (event.value.getDate())).slice(-2) + "&" + 
@@ -48,7 +54,7 @@ export class HomeComponent {
         this.addToCorrectFixtureList();
       }
       for(var i = 0; i < this.fixtureLists.length; i++){
-        if (this.fixtureLists[i].length > 0){
+        if (this.fixtureLists[i].fixtures.length > 0){
           this.fixtureListsEmpty = false;
         }
       }
@@ -60,52 +66,52 @@ export class HomeComponent {
     switch(this.fixture.leagueId){
       //Premier League
       case 2021:{
-        this.fixtureLists[0].push(this.fixture);
+        this.fixtureLists[0].fixtures.push(this.fixture);
         break;
       }
       //Championship
       case 2016:{
-        this.fixtureLists[1].push(this.fixture);
-        break;
-      }
-      //La Liga
-      case 2014:{
-        this.fixtureLists[4].push(this.fixture);
+        this.fixtureLists[1].fixtures.push(this.fixture);
         break;
       }
       //League 1
       case 2030:{
-        this.fixtureLists[2].push(this.fixture);
+        this.fixtureLists[2].fixtures.push(this.fixture);
         break;
       }
       //SPL
       case 2084:{
-        this.fixtureLists[3].push(this.fixture);
+        this.fixtureLists[3].fixtures.push(this.fixture);
+        break;
+      }
+      //La Liga
+      case 2014:{
+        this.fixtureLists[4].fixtures.push(this.fixture);
         break;
       }
       //Serie A
       case 2019:{
-        this.fixtureLists[5].push(this.fixture);
+        this.fixtureLists[5].fixtures.push(this.fixture);
         break;
       }
       //Bundesliga
       case 2002:{
-        this.fixtureLists[6].push(this.fixture);
+        this.fixtureLists[6].fixtures.push(this.fixture);
         break;
       }
       //Ligue 1
       case 2015:{
-        this.fixtureLists[7].push(this.fixture);
+        this.fixtureLists[7].fixtures.push(this.fixture);
         break;
       }
       //Eredivisie
       case 2003:{
-        this.fixtureLists[8].push(this.fixture);
+        this.fixtureLists[8].fixtures.push(this.fixture);
         break;
       }
       //Liga NOS
       case 2017:{
-        this.fixtureLists[9].push(this.fixture);
+        this.fixtureLists[9].fixtures.push(this.fixture);
         break;
       }
       //Brazillian Premier League
