@@ -1,5 +1,17 @@
 <loading-spinner *ngIf="showSpinner"></loading-spinner>
 <div class="fixtures-container">
+  <div class="topBar" *ngIf="!showSpinner">
+    <h3>Fixtures for {{ todaysDate.toString().substring(0, 15) }}</h3>
+      <mat-form-field >
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+          (dateInput)="repopulateFixtures($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> 
+  </div>
+ 
+    <div *ngIf="fixtureListsEmpty && !showSpinner" class="noFixtures"><h3 >No fixtures on this date, try changing date</h3></div>
+    
   <ng-container *ngFor="let fixtureList of fixtureLists; let i = index">
       <mat-expansion-panel *ngIf="fixtureList.length">
         <mat-expansion-panel-header>

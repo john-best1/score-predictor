@@ -1,7 +1,7 @@
 import { Fixture } from './../models/Fixture';
 import { FixturesService } from './../fixtures.service';
 import { Component } from '@angular/core';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +13,27 @@ export class HomeComponent {
   showSpinner: boolean = true;
   fixture: Fixture;
   fixtures: Fixture[] = [];
-  fixtureLists = [[],[],[],[],[],[],[],[],[],[],[]];
+  dateString : string;
+  fixtureListsEmpty: boolean = true;
+  fixtureLists = [[],[],[],[],[],[],[],[],[],[]];
+  todaysDate: Date = new Date();
   constructor(private fixturesService : FixturesService) { 
     this.getFixtures();
   }
 
 
-  getFixtures(){
-    return this.fixturesService.get()
+  repopulateFixtures(event: MatDatepickerInputEvent<Date>){
+    this.todaysDate = event.value;
+    this.fixtureLists = [[],[],[],[],[],[],[],[],[],[]];
+    this.fixtureListsEmpty = true;
+    this.showSpinner = true;
+    this.dateString = "&dateFrom=" + event.value.getFullYear() + "-" + ("0" + (event.value.getMonth() + 1)).slice(-2) + "-" + ("0" + (event.value.getDate())).slice(-2) + "&" + 
+                      "dateTo=" + event.value.getFullYear() + "-" + ("0" + (event.value.getMonth() + 1)).slice(-2) + "-" + ("0" + (event.value.getDate())).slice(-2)
+    this.getFixtures(this.dateString);                  
+  }
+  getFixtures(date: string = ''){
+
+    return this.fixturesService.get(date)
     .subscribe(fixtures => {
       for(var i=0; i < fixtures["matches"].length; i++){
         this.fixture = new Fixture();
@@ -34,9 +47,13 @@ export class HomeComponent {
         this.fixture.leagueName = fixtures["matches"][i]["competition"]["name"];   
         this.addToCorrectFixtureList();
       }
+      for(var i = 0; i < this.fixtureLists.length; i++){
+        if (this.fixtureLists[i].length > 0){
+          this.fixtureListsEmpty = false;
+        }
+      }
       this.showSpinner = false;
-    }
-      )
+    })
   }
 
   addToCorrectFixtureList(){
@@ -106,4 +123,5 @@ export class HomeComponent {
   buildFixtureString(team1, team2){
     return team1 + "   V   " + team2;
   }
+
 }

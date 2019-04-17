@@ -9,7 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LeaguesComponent } from './leagues/leagues.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatInputModule, MatExpansionModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatInputModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PredictionComponent } from './prediction/prediction.component';
@@ -40,7 +40,9 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatInputModule,
     MatExpansionModule,
     MatProgressBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     LeaguesService,

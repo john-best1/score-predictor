@@ -20,3 +20,29 @@
   .button-wrapper{
     text-align:center;
   }
+
+  .mat-form-field{
+    float:right;
+    margin-right: 10px;
+  }
+
+  .input{
+    background-color: white;
+  }
+
+  .noFixtures{
+    margin-top: 200px;
+    margin-left: 400px;
+  }
+.topBar{
+  width: 1000px;
+  height: 60px;
+  background-color:whitesmoke;
+  margin-bottom: 10px;
+}
+h3{
+  padding-left: 30px;
+  padding-top: 10px;
+  width: 500px;
+  display: inline-block;
+}
