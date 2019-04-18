@@ -1,11 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark toppane">
   <a class="navbar-brand" routerLink="/">Football Score Predictor</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" routerLink="/leagues">Leagues<span class="sr-only">(current)</span></a>
     </div>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link active login" routerLink="/">Login<span class="sr-only"></span></a>
+      </div>
+   </div>
+   <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+      <a class="dropdown-item" routerLink="">My Predictions</a>
+      <a class="dropdown-item" (click)="logout()">Log Out</a>
   </div>
 </nav>

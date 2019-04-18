@@ -6,3 +6,7 @@
     border-collapse: collapse;
     background-color: green;
   }
+
+  .login{
+    float:right;
+  }

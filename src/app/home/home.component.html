@@ -10,7 +10,7 @@
       </mat-form-field> 
   </div>
  
-    <div *ngIf="fixtureListsEmpty && !showSpinner" class="noFixtures"><h3 >No fixtures on this date, try changing date</h3></div>
+    <div *ngIf="fixtureListsEmpty && !showSpinner" class="noFixtures"><h3 >No fixtures on this date</h3></div>
     
   <ng-container *ngFor="let fixtureList of fixtureLists; let i = index">
       <mat-expansion-panel *ngIf="fixtureList.fixtures.length">

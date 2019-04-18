@@ -27,7 +27,7 @@
   </div>
   <div class="predictionpane" style="text-align: center">
     <div *ngIf="homeResults && awayResults && fixture; else elseBlock">
-          <h2>Predicted Result : {{ predictedResult(fixture.homeTeamName, fixture.awayTeamName, homeResults.totalPoints, awayResults.totalPoints) }}</h2>
+          <h2>Predicted Result : &nbsp;&nbsp;&nbsp;&nbsp;{{ predictedResult(fixture.homeTeamName, fixture.awayTeamName, homeResults.totalPoints, awayResults.totalPoints) }}</h2>
           <h2>Predicted Score : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ predictedScore() }}</h2>
     </div>
     <ng-template #elseBlock style="text-align:center">
