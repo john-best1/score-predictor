@@ -3,6 +3,7 @@ import { FixturesService } from './fixtures.service';
 import { LeaguesService } from './leagues.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,7 +15,8 @@ import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PredictionComponent } from './prediction/prediction.component';
 import {MatProgressBarModule} from '@angular/material';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component'
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { LoginComponent } from './login/login.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     HomeComponent,
     LeaguesComponent,
     PredictionComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'prediction/:leagueId/:fixtureId/:homeTeamId/:awayTeamId', component: PredictionComponent },
-      { path: 'leagues', component: LeaguesComponent }
+      { path: 'leagues', component: LeaguesComponent },
+      { path: 'login', component: LoginComponent }
     ]),
     MatTableModule,
     MatPaginatorModule,
@@ -42,7 +46,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatProgressBarModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgbModule
   ],
   providers: [
     LeaguesService,

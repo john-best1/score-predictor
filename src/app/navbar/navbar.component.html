@@ -1,15 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-dark toppane">
   <a class="navbar-brand" routerLink="/">Football Score Predictor</a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="/leagues">Leagues<span class="sr-only">(current)</span></a>
-    </div>
-    <div class="navbar-nav">
-        <a class="nav-item nav-link active login" routerLink="/">Login<span class="sr-only"></span></a>
-      </div>
-   </div>
-   <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-      <a class="dropdown-item" routerLink="">My Predictions</a>
-      <a class="dropdown-item">Log Out</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item nav-link active" routerLink="/leagues">League Tables<span class="sr-only">(current)</span></li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <ng-template #anonymousUser>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+        </ng-template>
+        <div *ngIf="appUser; else anonymousUser" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Toggle dropdown</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+              <button ngbDropdownItem>My Predictions</button>
+              <button ngbDropdownItem>Log Out</button>
+            </div>
+        </div>
+    </ul>
   </div>
+  
 </nav>
