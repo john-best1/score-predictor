@@ -5,4 +5,15 @@
 body {
     background-color: rgb(198, 229, 240);
 }
+html, body{
+  margin: 0;
+  height: 90%;
+}
 
+.footer{
+  text-align: center;
+  width: 80%;
+  font-size: 14px;
+  bottom: 0;
+  left: 0;
+}

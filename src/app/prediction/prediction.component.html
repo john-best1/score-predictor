@@ -30,6 +30,8 @@
           <h2>Predicted Result : &nbsp;&nbsp;&nbsp;&nbsp;{{ predictedResult(fixture.homeTeamName, fixture.awayTeamName, homeResults.totalPoints, awayResults.totalPoints) }}</h2>
           <h2>Predicted Score : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ predictedScore() }}</h2>
     </div>
+    
+    <div class="footer">Football data provided by the Football-Data.org API</div>
     <ng-template #elseBlock style="text-align:center">
       <mat-progress-bar style="width:30%; margin:0 auto;" mode="indeterminate"></mat-progress-bar>
     </ng-template>

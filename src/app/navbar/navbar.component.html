@@ -5,16 +5,18 @@
       <li class="nav-item nav-link active"><a class="nav-link" routerLink="/leagues">League Tables</a></li>
     </ul>
     <ul class="navbar-nav ml-auto">
-        <ng-template #anonymousUser>
-            <li class="nav-item">
-              <a class="nav-item nav-link active" routerLink="/login">Login</a>
-            </li>
-        </ng-template>
-        <div *ngIf="appUser; else anonymousUser" ngbDropdown #myDrop="ngbDropdown">
-            <button class="btn btn-outline-primary" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Toggle dropdown</button>
+      <ng-template #anonymousUser>
+        <li class="nav-item" *ngIf="!(user$ | async)">
+          <a class="nav-item nav-link active" routerLink="/login">Login</a>
+        </li>
+      </ng-template>   
+        <div ngbDropdown #myDrop="ngbDropdown" *ngIf="user$ | async as user; else anonymousUser">
+            <button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+              {{ user.displayName }}
+            </button>
             <div ngbDropdownMenu aria-labelledby="dropdownManual">
               <button ngbDropdownItem>My Predictions</button>
-              <button ngbDropdownItem>Log Out</button>
+              <button ngbDropdownItem (click)="logOut()">Log Out</button>
             </div>
         </div>
     </ul>

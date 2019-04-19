@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { MatchesService } from './matches.service';
 import { FixturesService } from './fixtures.service';
 import { LeaguesService } from './leagues.service';
@@ -16,7 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PredictionComponent } from './prediction/prediction.component';
 import {MatProgressBarModule} from '@angular/material';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from './environments/environment';
 
 @NgModule({
   declarations: [
@@ -47,12 +52,16 @@ import { LoginComponent } from './login/login.component'
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgbModule
+    NgbModule,
+    AngularFireModule.initializeApp(environment.firebase, 'my-app-name'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [
     LeaguesService,
     FixturesService,
-    MatchesService
+    MatchesService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

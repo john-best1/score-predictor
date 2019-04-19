@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { UserService } from './../user.service';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  ngOnInit() {
+  loginWithGoogle(){
+    this.userService.loginWithGoogle();
   }
-
+  //loginWithFacebook(){
+  //  this.userService.loginWithFacebook();
+  //}
 }
