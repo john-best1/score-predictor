@@ -20,11 +20,11 @@ export class LeaguesComponent {
   displayedColumns: string[] = ['position', 'name', 'matchesPlayed', 'won', 'drawn', 'lost', 'goalsFor', 'goalsAgainst', 'goalDifference', 'points'];
   entry: LeagueEntry;
   //2021 prem, 2016 champ, 2030 league 1, 2084 spl, 2014 la liga, 2002 bundes, 2019 serie a, 2015 ligue 1, 2003 eredivisie, 2017 liga nos
-  leagues = [{id: 1, name: 'Premier League', code: 2021}, {id: 2, name: 'Championship', code: 2016}, 
-            {id: 3, name: 'League 1', code: 2030},{id: 4, name: 'Scotland Premier League', code: 2084},
-            {id: 5, name: 'Spain La Liga', code: 2014},{id: 6, name: 'Bundesliga', code: 2002},
-            {id: 7, name: 'Italy Serie A', code: 2019},{id: 8, name: 'Ligue 1', code: 2015}, 
-            {id: 9, name: 'Eredivisie', code: 2003},{id: 10, name: 'Portuguese Primera Division', code: 2017}];
+  leagues = [{id: 1, name: 'England Premier League', code: 2021}, {id: 2, name: 'England Championship', code: 2016}, 
+            {id: 3, name: 'England League 1', code: 2030},{id: 4, name: 'Scotland Premier League', code: 2084},
+            {id: 5, name: 'Spain La Liga', code: 2014},{id: 6, name: 'Germany Bundesliga', code: 2002},
+            {id: 7, name: 'Italy Serie A', code: 2019},{id: 8, name: 'France Ligue 1', code: 2015}, 
+            {id: 9, name: 'Holland Eredivisie', code: 2003},{id: 10, name: 'Portugal Primera Division', code: 2017}];
   formTypes = [{id: 0, name: 'Total'},{id: 1, name: 'Home'},{id: 2, name: 'Away'}];
 
   @ViewChild(MatSort) sort: MatSort;

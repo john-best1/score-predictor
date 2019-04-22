@@ -1,6 +1,7 @@
 <div style="text-align: center" *ngIf="fixture">
   <div class="toppane">
       <div>
+      <img class="flag" [src]='"https://cdn2.iconfinder.com/data/icons/world-flag-icons/128/Flag_of_" + country + ".png"'>
         <h3>{{ fixture.leagueName}}</h3>     
         <p>{{fixture.venue}}</p>
         <p>{{ fixture.dateTime | date:'dd MMM yyyy'}}&nbsp;&nbsp;&nbsp;&nbsp;{{ fixture.dateTime | date:'shortTime'}}</p>
@@ -34,6 +35,7 @@
     <div class="footer">Football data provided by the Football-Data.org API</div>
     <ng-template #elseBlock style="text-align:center">
       <mat-progress-bar style="width:30%; margin:0 auto;" mode="indeterminate"></mat-progress-bar>
+      <div style="padding-top: 30px">Generating Prediction</div>
     </ng-template>
   </div>
 </div>

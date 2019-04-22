@@ -29,7 +29,7 @@
                 <td>{{ buildFixtureString(fixture.homeTeamName, fixture.awayTeamName)}}</td>
                 <td>
                 <div class="button-wrapper">
-                  <button class="btn btn-primary" [routerLink]="['prediction', fixture.leagueId, fixture.id, fixture.homeTeamId, fixture.awayTeamId]">
+                  <button class="btn btn-primary" [routerLink]="['prediction', fixture.leagueId, fixture.id, fixture.homeTeamId, fixture.awayTeamId, fixtureList.country]">
                     Get Prediction
                   </button>
                 </div>

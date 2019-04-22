@@ -1,9 +1,9 @@
 <div class="example-container mat-elevation-z8">
-    <select (change)="onChangeLeague($event.target.value)">
-      <option *ngFor="let league of leagues" [value]="league.id">{{league.name}}</option>
+    <select (change)="onChangeLeague($event.target.value)" style="font-weight: bold">
+      <option *ngFor="let league of leagues" [value]="league.id" style="font-weight: bold">{{league.name}}</option>
     </select>
-    <select (change)="onChangeForm($event.target.value)">
-        <option *ngFor="let formType of formTypes" [value]="formType.id">{{formType.name}}</option>
+    <select (change)="onChangeForm($event.target.value)" style="font-weight: bold">
+        <option *ngFor="let formType of formTypes" [value]="formType.id" style="font-weight: bold">{{formType.name}}</option>
     </select>
   <mat-table [dataSource]="listData" matSort>
       <ng-container matColumnDef="position">
@@ -12,7 +12,7 @@
       </ng-container>
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element" style="font-weight: bold"> {{element.name}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="matchesPlayed">
         <mat-header-cell *matHeaderCellDef mat-sort-header>MP</mat-header-cell>

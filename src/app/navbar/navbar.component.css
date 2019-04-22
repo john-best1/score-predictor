@@ -11,4 +11,17 @@
     float:right;
   }
 
-  
+  .navbar-nav li a, .navbar-brand{
+    color:white;
+  }
+ .navbar-nav.mr-auto li a:hover, .navbar-nav.mr-auto li a:focus{
+   color: rgb(105, 181, 252);
+}
+
+.navbar-nav.ml-auto li a:hover, .navbar-nav.ml-auto li a:focus{
+  color: rgb(105, 181, 252);
+}
+
+.navbar-brand:hover, .navbar-brand:focus{
+  color: rgb(105, 181, 252);
+}

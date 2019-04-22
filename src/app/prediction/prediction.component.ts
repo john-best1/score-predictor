@@ -31,9 +31,11 @@ export class PredictionComponent{
   resultPrediction: number = 0;
   predictedHomeGoalsWhole: number;
   predictedAwayGoalsWhole: number;
+  country: string;
 
   constructor(  private route: ActivatedRoute, private router: Router, private fixturesService: FixturesService, private leagueService: LeaguesService,
     private matchesService: MatchesService) { 
+      this.country = this.route.snapshot.paramMap.get('country');
       this.fixture$ = this.fixturesService.getFixture(this.route.snapshot.paramMap.get('fixtureId'));
       this.populateFixture();
       this.league$ = this.leagueService.get(+this.route.snapshot.paramMap.get('leagueId'));

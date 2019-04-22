@@ -38,7 +38,7 @@ import { environment } from './environments/environment';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'prediction/:leagueId/:fixtureId/:homeTeamId/:awayTeamId', component: PredictionComponent },
+      { path: 'prediction/:leagueId/:fixtureId/:homeTeamId/:awayTeamId/:country', component: PredictionComponent },
       { path: 'leagues', component: LeaguesComponent },
       { path: 'login', component: LoginComponent }
     ]),
