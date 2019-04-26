@@ -32,6 +32,7 @@ export class PredictionComponent{
   predictedHomeGoalsWhole: number;
   predictedAwayGoalsWhole: number;
   country: string;
+  homeAdvantage: number = 2.5;
 
   constructor(  private route: ActivatedRoute, private router: Router, private fixturesService: FixturesService, private leagueService: LeaguesService,
     private matchesService: MatchesService) { 
@@ -51,6 +52,7 @@ export class PredictionComponent{
       this.homeResults = new LastSixResults();   
       this.homeResults.teamId = this.route.snapshot.paramMap.get('homeTeamId')
       this.homeResults.matches = [];
+      this.homeResults.totalPoints = this.homeAdvantage;
       for(var i = (+res["matches"].length)-1; i != ((+res["matches"].length)-1) - this.homeSixGameCount; i--){
         if (res["matches"][i]["competition"]["id"] == this.route.snapshot.paramMap.get('leagueId')){    
           this.resultToAdd = new MatchResult();
@@ -216,21 +218,23 @@ export class PredictionComponent{
   }
 
   predictedResult(homeTeam : string, awayTeam: string, homePoints : number, awayPoints : number){
-    if (homePoints - awayPoints > -0.5){     
-      this.resultPrediction = 1;
-      if (homePoints - awayPoints > 5.5){
+    if (homePoints - awayPoints > 2.5){     
+      if (homePoints - awayPoints > 9){
+        this.resultPrediction = 4;
         return homeTeam + " Win - STRONG";
       }
       else{
+        this.resultPrediction = 1;
         return homeTeam + " Win" 
       }
     }
-    else if (awayPoints - homePoints > 6.5){
-        this.resultPrediction = 2;
-      if(awayPoints - homePoints > 12.5){
+    else if (awayPoints - homePoints > 2.5){
+      if(awayPoints - homePoints > 9){
+        this.resultPrediction = 5;
         return awayTeam + " Win - STRONG";
       }
       else{
+        this.resultPrediction = 2;
         return awayTeam + " Win" 
       }
     }
@@ -245,25 +249,93 @@ export class PredictionComponent{
     this.predictedAwayGoalsWhole = Math.round(this.awayResults.totalScored / 6); 
 
     if (this.resultPrediction == 1 && this.predictedHomeGoalsWhole <= this.predictedAwayGoalsWhole){
-        if(this.predictedAwayGoalsWhole > (this.homeResults.totalConceded / 6)){
+      if(this.predictedAwayGoalsWhole > (this.awayResults.totalScored / 6)){
+        this.predictedAwayGoalsWhole --;
+      }
+      if(this.predictedHomeGoalsWhole < (this.homeResults.totalScored / 6)){
+        this.predictedHomeGoalsWhole ++;
+      }
+      if (this.resultPrediction == 1 && this.predictedHomeGoalsWhole <= this.predictedAwayGoalsWhole){
+        if(this.predictedAwayGoalsWhole > (this.awayResults.totalScored / 6)){
           this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole - 1;
         }
         else {
           this.predictedHomeGoalsWhole = this.predictedAwayGoalsWhole + 1;
         }
-      }
+      }}
+
     else if(this.resultPrediction == 2 && this.predictedAwayGoalsWhole <= this.predictedHomeGoalsWhole){
-      if (this.predictedHomeGoalsWhole > (this.awayResults.totalConceded / 6)){
-        this.predictedHomeGoalsWhole = this.predictedAwayGoalsWhole - 1;
+      if(this.predictedAwayGoalsWhole < (this.awayResults.totalScored / 6)){
+        this.predictedAwayGoalsWhole ++;
+      }
+      if(this.predictedHomeGoalsWhole > (this.homeResults.totalScored / 6)){
+        this.predictedHomeGoalsWhole --;
+      }
+      if (this.resultPrediction == 2 && this.predictedAwayGoalsWhole <= this.predictedHomeGoalsWhole){
+        if (this.predictedHomeGoalsWhole > (this.awayResults.totalConceded / 6)){
+          this.predictedHomeGoalsWhole = this.predictedAwayGoalsWhole - 1;
+        }
+        else{
+          this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole + 1;
+        }
+    }}
+    else if (this.resultPrediction == 4){
+      if(this.predictedAwayGoalsWhole > (this.awayResults.totalScored / 6)){
+        this.predictedAwayGoalsWhole --;
+      }
+      if(this.predictedHomeGoalsWhole < (this.homeResults.totalScored / 6)){
+        this.predictedHomeGoalsWhole ++;
+      }
+      if (this.predictedHomeGoalsWhole == this.predictedAwayGoalsWhole ){
+        this.predictedHomeGoalsWhole ++;
+        this.predictedAwayGoalsWhole --;
+      }
+      else if(this.predictedHomeGoalsWhole - this.predictedAwayGoalsWhole == 1){
+        if(this.predictedHomeGoalsWhole - this.predictedAwayGoalsWhole == 1){
+          this.predictedHomeGoalsWhole ++;
+        }
       }
       else{
-        this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole + 1;
+        if(this.predictedHomeGoalsWhole <= this.predictedAwayGoalsWhole){
+          if (this.predictedHomeGoalsWhole > 0){
+            this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole - 1;
+          }
+          else{
+            this.predictedHomeGoalsWhole = this.predictedAwayGoalsWhole + 1;
+          }
+        }
+      }
+    }
+    else if (this.resultPrediction == 5){
+      if(this.predictedAwayGoalsWhole < (this.awayResults.totalScored / 6)){
+        this.predictedAwayGoalsWhole ++;
+      }
+      if(this.predictedHomeGoalsWhole > (this.homeResults.totalScored / 6)){
+        this.predictedHomeGoalsWhole --;
+      }
+      if (this.predictedHomeGoalsWhole == this.predictedAwayGoalsWhole ){
+        this.predictedHomeGoalsWhole --;
+        this.predictedAwayGoalsWhole ++;
+      }
+      else if(this.predictedAwayGoalsWhole - this.predictedHomeGoalsWhole == 1){      
+        if(this.predictedAwayGoalsWhole - this.predictedHomeGoalsWhole == 1){
+          this.predictedAwayGoalsWhole ++;
+        }
+      }
+      else{
+        if(this.predictedAwayGoalsWhole <= this.predictedHomeGoalsWhole){
+          if (this.predictedAwayGoalsWhole > 0){
+            this.predictedHomeGoalsWhole = this.predictedAwayGoalsWhole - 1;
+          }
+          else{
+            this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole + 1;
+          }
+        }
       }
     }
     else if(this.resultPrediction == 3 && this.predictedHomeGoalsWhole != this.predictedAwayGoalsWhole){
       this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole
     }
-    
     return this.predictedHomeGoalsWhole + " - " + this.predictedAwayGoalsWhole;
   }
 }
