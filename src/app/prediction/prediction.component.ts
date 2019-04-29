@@ -47,6 +47,7 @@ export class PredictionComponent{
       this.populateAwayResults();
   }
 
+  //get results of away team and casluclate points
   populateHomeResults(){
     return this.homeResults$.subscribe(res => {
       this.homeResults = new LastSixResults();   
@@ -97,6 +98,7 @@ export class PredictionComponent{
     )
   }
 
+  //get results of away team and casluclate points
   populateAwayResults(){
     return this.awayResults$.subscribe(res => {
       this.awayResults = new LastSixResults();   
@@ -145,6 +147,7 @@ export class PredictionComponent{
     })
   }
 
+  //get the details of the fixture
   populateFixture(){
     return this.fixture$.subscribe(res => {
       this.fixture = new FixtureForPrediction();
@@ -161,6 +164,7 @@ export class PredictionComponent{
     })
   }
 
+  //make the stats object for each team
   populateStatSheets(){
     return this.league$.subscribe(res =>{
       this.homeStats = new SeasonStats();
@@ -217,6 +221,7 @@ export class PredictionComponent{
     return (scored/total).toPrecision(2);
   }
 
+  //predict the result of the match
   predictedResult(homeTeam : string, awayTeam: string, homePoints : number, awayPoints : number){
     if (homePoints - awayPoints > 2.5){     
       if (homePoints - awayPoints > 9){
@@ -242,8 +247,9 @@ export class PredictionComponent{
       this.resultPrediction = 3;
       return "Draw"
     }
-}
+  }
 
+  //calculate a score that corresponds to reszult prediction from above method
   predictedScore(){
     this.predictedHomeGoalsWhole = Math.round(this.homeResults.totalScored / 6); 
     this.predictedAwayGoalsWhole = Math.round(this.awayResults.totalScored / 6); 

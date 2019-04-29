@@ -12,9 +12,9 @@
   }
 
   .navbar-nav li a, .navbar-brand{
-    color:white;
+    color:rgb(218, 210, 210);
   }
- .navbar-nav.mr-auto li a:hover, .navbar-nav.mr-auto li a:focus{
+ .navbar-nav li a:hover, .navbar-nav li a:focus{
    color: rgb(105, 181, 252);
 }
 
