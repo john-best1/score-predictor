@@ -41,6 +41,7 @@ export class HomeComponent {
 
     return this.fixturesService.get(date)
     .subscribe(fixtures => {
+      console.log("Fixtures Data")
       console.log(fixtures)
       for(var i=0; i < fixtures["matches"].length; i++){
         this.fixture = new Fixture();
