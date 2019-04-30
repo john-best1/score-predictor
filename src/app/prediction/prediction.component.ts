@@ -50,6 +50,8 @@ export class PredictionComponent{
   //get results of away team and casluclate points
   populateHomeResults(){
     return this.homeResults$.subscribe(res => {
+      console.log("Home Team Results Data")
+      console.log(res)
       this.homeResults = new LastSixResults();   
       this.homeResults.teamId = this.route.snapshot.paramMap.get('homeTeamId')
       this.homeResults.matches = [];
@@ -150,6 +152,8 @@ export class PredictionComponent{
   //get the details of the fixture
   populateFixture(){
     return this.fixture$.subscribe(res => {
+      console.log("Fixture Data")
+      console.log(res)
       this.fixture = new FixtureForPrediction();
       this.fixture.homeTeamId = res["match"]["homeTeam"]["id"];
       this.fixture.homeTeamName = res["match"]["homeTeam"]["name"];

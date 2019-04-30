@@ -23,6 +23,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from './environments/environment';
 import { MyPredictionsComponent } from './my-predictions/my-predictions.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MyPredictionsComponent } from './my-predictions/my-predictions.componen
     PredictionComponent,
     LoadingSpinnerComponent,
     LoginComponent,
-    MyPredictionsComponent
+    MyPredictionsComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { MyPredictionsComponent } from './my-predictions/my-predictions.componen
       { path: 'prediction/:leagueId/:fixtureId/:homeTeamId/:awayTeamId/:country', component: PredictionComponent },
       { path: 'leagues', component: LeaguesComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'help', component: HelpComponent },
       { path: 'myPredictions', component: MyPredictionsComponent }
     ]),
     MatTableModule,

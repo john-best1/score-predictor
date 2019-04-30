@@ -41,6 +41,7 @@ export class LeaguesComponent {
 
     populateLeagueEntries(type: number){
       this.league.subscribe(res => {
+        console.log(res)
         for(var i=0; i < res["standings"][type]["table"].length; i++){
           this.entry = new LeagueEntry();
           this.entry.position = res["standings"][type]["table"][i]["position"];

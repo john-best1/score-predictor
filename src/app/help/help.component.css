@@ -1,0 +1,12 @@
+h3{
+    text-decoration: underline;
+    text-align: center;
+}
+
+div{  
+    margin-top: 80px;
+    text-align: center;
+}
+li{
+    list-style-position: inside;
+}
