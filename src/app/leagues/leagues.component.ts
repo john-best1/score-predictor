@@ -34,11 +34,13 @@ export class LeaguesComponent {
     }
 
 
+    // get correct league table from api based on league code (default premier league)
     getTable(){
       this.league = this.leagueService.get(this.leagueCode);
       this.populateLeagueEntries(this.tableType);
     }
 
+    // populate the league entries array with the data returned from the API
     populateLeagueEntries(type: number){
       this.league.subscribe(res => {
         console.log("League Data")
@@ -60,12 +62,14 @@ export class LeaguesComponent {
         }})
     }
 
-    onChangeLeague(leagueId){
+  //user has changed league, make new call
+  onChangeLeague(leagueId){
     this.leagueCode = this.leagues.filter(l => l.id == leagueId)[0].code;
     this.leagueEntries = [];
     this.getTable();
   }
 
+  //user has changed league type, change league entries table
   onChangeForm(formTypeId){
     this.tableType = this.formTypes.filter(f => f.id == formTypeId)[0].id;
     this.leagueEntries = [];

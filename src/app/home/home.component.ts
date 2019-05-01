@@ -25,6 +25,7 @@ export class HomeComponent {
   }
 
 
+  //date has changed, get new fixtures
   repopulateFixtures(event: MatDatepickerInputEvent<Date>){
     this.fixtureLists = [{country: "England", fixtures : []},{country: "England", fixtures : []},{country: "England", fixtures : []},
     {country: "Scotland", fixtures : []},{country: "Spain", fixtures : []},{country: "Italy", fixtures : []},{country: "Germany", fixtures : []},
@@ -37,8 +38,9 @@ export class HomeComponent {
                       "dateTo=" + event.value.getFullYear() + "-" + ("0" + (event.value.getMonth() + 1)).slice(-2) + "-" + ("0" + (event.value.getDate())).slice(-2)
     this.getFixtures(this.dateString);                  
   }
-  getFixtures(date: string = ''){
 
+  // get list of fixtures with optional date, empty string defaults to todays date
+  getFixtures(date: string = ''){
     return this.fixturesService.get(date)
     .subscribe(fixtures => {
       console.log("Fixtures Data")
@@ -64,6 +66,7 @@ export class HomeComponent {
     })
   }
 
+  //add the fixture to the correct array
   addToCorrectFixtureList(){
     switch(this.fixture.leagueId){
       //Premier League
