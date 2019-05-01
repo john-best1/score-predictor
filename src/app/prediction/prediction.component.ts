@@ -103,6 +103,8 @@ export class PredictionComponent{
   //get results of away team and casluclate points
   populateAwayResults(){
     return this.awayResults$.subscribe(res => {
+      console.log("Away Team Results Data")
+      console.log(res)
       this.awayResults = new LastSixResults();   
       this.awayResults.teamId = this.route.snapshot.paramMap.get('awayTeamId')
       this.awayResults.matches = [];
@@ -171,6 +173,8 @@ export class PredictionComponent{
   //make the stats object for each team
   populateStatSheets(){
     return this.league$.subscribe(res =>{
+      console.log("League Data")
+      console.log(res)
       this.homeStats = new SeasonStats();
       this.awayStats = new SeasonStats();
       for (var i = 0; i < res["standings"]["0"]["table"].length; i++){
@@ -217,6 +221,7 @@ export class PredictionComponent{
     )  
   }
 
+  //string builder for W D L percentages
   wdl(total, won, drawn, lost){
      return (won / total * 100).toPrecision(2) + "/" + (drawn / total * 100).toPrecision(2) + "/" + (lost / total * 100).toPrecision(2);
   }
@@ -258,6 +263,7 @@ export class PredictionComponent{
     this.predictedHomeGoalsWhole = Math.round(this.homeResults.totalScored / 6); 
     this.predictedAwayGoalsWhole = Math.round(this.awayResults.totalScored / 6); 
 
+    //regular home win
     if (this.resultPrediction == 1 && this.predictedHomeGoalsWhole <= this.predictedAwayGoalsWhole){
       if(this.predictedAwayGoalsWhole > (this.awayResults.totalScored / 6)){
         this.predictedAwayGoalsWhole --;
@@ -273,7 +279,7 @@ export class PredictionComponent{
           this.predictedHomeGoalsWhole = this.predictedAwayGoalsWhole + 1;
         }
       }}
-
+    // regular away win
     else if(this.resultPrediction == 2 && this.predictedAwayGoalsWhole <= this.predictedHomeGoalsWhole){
       if(this.predictedAwayGoalsWhole < (this.awayResults.totalScored / 6)){
         this.predictedAwayGoalsWhole ++;
@@ -289,6 +295,7 @@ export class PredictionComponent{
           this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole + 1;
         }
     }}
+    // home win strong
     else if (this.resultPrediction == 4){
       if(this.predictedAwayGoalsWhole > (this.awayResults.totalScored / 6)){
         this.predictedAwayGoalsWhole --;
@@ -316,7 +323,8 @@ export class PredictionComponent{
         }
       }
     }
-    else if (this.resultPrediction == 5){
+    // away win strong
+    else if (this.resultPrediction == 5){  
       if(this.predictedAwayGoalsWhole < (this.awayResults.totalScored / 6)){
         this.predictedAwayGoalsWhole ++;
       }
@@ -343,6 +351,7 @@ export class PredictionComponent{
         }
       }
     }
+    // draw
     else if(this.resultPrediction == 3 && this.predictedHomeGoalsWhole != this.predictedAwayGoalsWhole){
       this.predictedAwayGoalsWhole = this.predictedHomeGoalsWhole
     }
